@@ -1,0 +1,70 @@
+/* Default */
+	/* Typography */
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+	font-size: 1em;
+}
+
+a {
+	font-size: 1em;
+	text-decoration: none;
+}
+
+/* NAV */
+header {
+	width: 100%;
+	height: 10em;
+	background-color: #65CCFD; 
+}
+
+header h1 {
+	padding-left: 1em;
+	padding-top: 1em;
+	margin-bottom: 1em;
+}
+
+header nav {
+	padding-right: 1em;	
+}
+
+nav ul {
+
+}
+
+nav ul li {
+	display: inline-block;
+	margin: .5em;
+}
+
+nav ul li a:hover {
+	background-color: red;
+}
+
+nav ul li a {
+	padding: 0.5em;
+	background-color: #0D98D8;
+	border-radius: 0.5em;
+	color: #ffffff;
+}
+
+main {
+	padding: 1em;
+	background-color: hsl(0, 0%, 90%);
+	height:80em;
+	width: 100%;
+}
+
+section {
+	width: 100%;
+}
+.template {
+	display: none;
+}
+main .template {
+	display: block;
+}

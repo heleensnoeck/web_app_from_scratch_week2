@@ -1,0 +1,59 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+$color-morning: #e3bb88;
+$color-day: #d89864;
+$color-evening: #b1695a;
+$color-night: #644749;
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Lato', sans-serif;
+  background-color:green;
+}
+
+// is device
+main { 
+  height: 816px;
+  width: 396px;
+  margin:0 auto;
+  background-color:pink;
+}
+
+.weather {
+  height: calc(100% - 50px);
+  width: 100%;
+  overflow: hidden;
+  background-color: pink;
+}
+
+.content {
+    float:right;
+    width:10em;
+    padding:1em;
+    background-color:$color-morning;
+  }
+
+
+  
+/*// #content {
+//     right: 0;
+//     width: 40%;
+//     position: absolute;
+//     color: white;
+//     // background-color:red;
+// }*/
+
+ h3 {
+   text-transform: uppercase;
+   color: rgba(255, 255, 255, 0.4);
+   margin-bottom: 0;
+   font-weight: 700;
+ }
+  
+h4 {
+  color: #ffffff;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;    
+  font-weight: 400;
+}
