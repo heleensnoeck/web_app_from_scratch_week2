@@ -47,6 +47,22 @@
 				var jsonData = JSON.parse(data);
 				console.log(jsonData);
 
+				// var render = {
+				// 	    data_.filter(function(out) {
+				// 		return out
+				// 	}
+				// }
+
+				// var render = data.filter(function(out){
+				// 	return out
+				// })
+				
+				// console.log(render);
+
+				// var goodImages = this.searchResults.Search.filter(function(out) { 
+				//     return out.Poster != 'N/A'; 
+				// })	
+
 				var content = {        
 				      morning: jsonData.list[0].temp.morn,
 				      day: jsonData.list[0].temp.day,
