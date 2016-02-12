@@ -15,6 +15,7 @@
 		}
 	};
 
+	// gaat naar bepaalde routes. 
 	var routes = {
 		init: function() {
 			routie({
@@ -33,41 +34,27 @@
 
 		init: function() {
 
-			// variable 
-			// var placeMorning = document.getElementById('weather_time'); 
-			// var placeDiscription = document.getElementById('weather_discription');
-			// var placeWind = document.getElementById('weather_wind');
-
 			nanoajax.ajax({url:'http://api.openweathermap.org/data/2.5/forecast/daily?id=524901&appid=d55e532e359ca4e0b28bc4cf0ae34bce&units=metric'
-			}, function (status, data) { 
-				
-				var data = data;
-				console.log(data);
-				
+			}, function (status, data) { 				
 				var jsonData = JSON.parse(data);
+
 				console.log(jsonData);
 
-				// var render = {
-				// 	    data_.filter(function(out) {
-				// 		return out
-				// 	}
-				// }
+				// geholpen door casper
+				// map loopt over the data en haal met pick alleen de nieuwe content eruit en slaat dit op 
+				var filteredData = _.map(jsonData, function(value){
+					return _.pick(value, 'clouds', 'temp');
+				});
 
-				// var render = data.filter(function(out){
-				// 	return out
-				// })
-				
-				// console.log(render);
+				console.log(filteredData);
 
-				// var goodImages = this.searchResults.Search.filter(function(out) { 
-				//     return out.Poster != 'N/A'; 
-				// })	
+				// for.each
 
 				var content = {        
 				      morning: jsonData.list[0].temp.morn,
 				      day: jsonData.list[0].temp.day,
-				      evening: jsonData.list[0].temp.night,
-				      night: jsonData.list[0].temp.eve,
+				      evening: jsonData.list[0].temp.eve,
+				      night: jsonData.list[0].temp.night,
 				      
 				      weatherDiscription: jsonData.list[0].weather[0].main,
 				      
@@ -75,26 +62,47 @@
 				      humidity: jsonData.list[0].humidity
 				}
 
-				console.log(content.morning);
+				// console.log(content.morning);
 
-			  var placeMorning = {
-			    weather_time:  content.morning + '° C',
-			    weather_discription: content.weatherDiscription,
-			    weather_wind: 'E' + '' + content.wind + '' + 'mph'
-			  };
+				// Transparentie pakt de divs uit de html en plaatst de content erin
+				  var placeMorning = {
+				    weather_time:  content.morning + '° C',
+				    weather_discription: content.weatherDiscription,
+				    weather_wind: 'Wind:' + ' ' + 'N' + ' ' + content.wind + ' ' + 'mph',
+				    weather_humidity: 'Humidity:' + ' ' + content.humidity 
+				  };
 
-			  Transparency.render(document.getElementById('weather'), placeMorning);			
+				  var placeDay = {
+				    weather_time:  content.day + '° C',
+				    weather_discription: content.weatherDiscription,
+				    weather_wind: 'Wind:' + ' ' + 'N' + ' ' + content.wind + ' ' + 'mph',
+				    weather_humidity: 'Humidity:' + ' ' + content.humidity
+				  };
 
-		      // placeMorning.innerHTML = content.morning + '° C';
-		      // placeDiscription.innerHTML = content.weatherDiscription;
-		      // placeWind.innerHTML = 'E' + '' + content.wind + '' + 'mph';
+				  var placeEvening = {
+				    weather_time:  content.evening + '° C',
+				    weather_discription: content.weatherDiscription,
+				    weather_wind: 'Wind:' + ' ' + 'E' + ' ' + content.wind + ' ' + 'mph',
+				    weather_humidity: 'Humidity:' + ' ' + content.humidity
+				  };
 
-				
+				  var placeNight = {
+				    weather_time:  content.night + '° C',
+				    weather_discription: content.weatherDiscription,
+				    weather_wind: 'Wind:' + ' ' + 'E' + ' ' + content.wind + ' ' + 'mph',
+				    weather_humidity: 'Humidity:' + ' ' + content.humidity
+				  };
+
+			  Transparency.render(document.getElementById('weather_morning'), placeMorning);
+			  Transparency.render(document.getElementById('weather_day'), placeDay);
+			  Transparency.render(document.getElementById('weather_evening'), placeEvening);
+			  Transparency.render(document.getElementById('weather_night'), placeNight);			
+		
 		})
 
 		}
 	}	      
-	// start the main app
+	// start the main app 
 	app.init();
 
 })();
