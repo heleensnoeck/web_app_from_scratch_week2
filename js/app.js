@@ -26,11 +26,15 @@
 			    	main.innerHTML = document.querySelector('#best-practices').innerHTML;
 			    }
 			});
+			// Wanneer er zich geen hash bevind in de url, laat routie de hash naar home zetten
+			if (!window.location.hash) {
+				routie('home')
+			};
 		}
 	};
 
 	var weatherApp = {
-
+		weatherObject: [],
 		init: function() {
 
 			// variable 
@@ -42,10 +46,8 @@
 			}, function (status, data) { 
 				
 				var data = data;
-				console.log(data);
 				
 				var jsonData = JSON.parse(data);
-				console.log(jsonData);
 
 				// var render = {
 				// 	    data_.filter(function(out) {
@@ -74,16 +76,10 @@
 				      wind: jsonData.list[0].speed,
 				      humidity: jsonData.list[0].humidity
 				}
-
-				console.log(content.morning);
-
-			  var placeMorning = {
-			    weather_time:  content.morning + '° C',
-			    weather_discription: content.weatherDiscription,
-			    weather_wind: 'E' + '' + content.wind + '' + 'mph'
-			  };
-
-			  Transparency.render(document.getElementById('weather'), placeMorning);			
+				// Make the data the weatherObject
+				weatherApp.weatherObject = content;
+				// Render your content
+				weatherApp.render();
 
 		      // placeMorning.innerHTML = content.morning + '° C';
 		      // placeDiscription.innerHTML = content.weatherDiscription;
@@ -92,6 +88,16 @@
 				
 		})
 
+		}, 
+		render: function() {
+			// Render the content from the weatherObject
+			var placeMorning = {
+			    weather_time:  this.weatherObject.morning + '° C',
+			    weather_discription: this.weatherObject.weatherDiscription,
+			    weather_wind: 'E' + '' + this.weatherObject.wind + '' + 'mph'
+			  };
+
+			  Transparency.render(document.getElementById('weather'), placeMorning);
 		}
 	}	      
 	// start the main app
